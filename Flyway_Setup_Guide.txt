@@ -1,0 +1,73 @@
+V1__Initial_Setup.sql
+
+
+
+V2__Customer_Table.sql
+CREATE TABLE customer
+(
+    id    BIGINT,
+    name  TEXT,
+    email TEXT,
+    age   INT
+);
+
+
+
+V3__Add_Country_Column_To_Customer.sql
+ALTER TABLE customer
+ADD COLUMN  country TEXT;
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+If we make this  ddl-auto: none in application.yml  then we can use the flyway 
+1.Add the dependency of the flyway
+2.Create the directory inside the resources folder named as db migration then check the postgres bash with \q to checking the directory wheather 
+  
+ Schema |         Name          | Type  |   Owner
+--------+-----------------------+-------+------------        
+ public | flyway_schema_history | table | amigoscode
+
+ This is showen then
+ 3.Describing the above schemas 
+ by the help of the command 
+ \q flyway_schema_history
+ 4.Clearing the screen in postgres bash by using cntrl+L
+ 5.Now Checking the table named as flyway_schema_history  by using 
+ select * from flyway_schema_history and then check the details
+ 6. In step 2 when we have created the directory then we have to created the file named as 
+V1__Initial_Setup.sql 
+Then for migrating this to the customer database we have to created the filed name as 
+V2__Customer_Table.sql
+Then inside of this file we can wrote the table 
+ CREATE TABLE customer
+(
+    id    BIGINT,
+    name  TEXT,
+    email TEXT,
+    age   INT
+);
+Then go inside the postgres bash and check the commands 
+\dt=>List of relationships 
+now 
+\d customer=>Describing the customer table then
+ Flyway is an open source tool that helps you to manage database schema changes in an easy, simple and reproducible way. It allows you to migrate your database schema from one version to the next, ensuring that your development, test and production environments all use the same schema.
+
+Flyway handles migrations by:
+
+Tracking which migrations have been applied to your database in a schema history table.
+Scanning your codebase for SQL migration scripts.
+Applying pending migrations to your database in the correct order.
+ Why Use Flyway?
+The main benefits of using Flyway are:
+
+Ensures consistent database schemas across environments.
+Makes database migrations part of your codebase, so they are version controlled.
+Simple and lightweight - does not require a lot of configuration.
+Supports multiple databases - MySQL, PostgreSQL, SQL Server etc.
+Has a Java API for integration with frameworks like Spring Boot.
